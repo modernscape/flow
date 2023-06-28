@@ -7,6 +7,11 @@
   <title>flow</title>
   <link rel="shortcut icon" href="TemplateData/favicon.ico" />
   <link rel="stylesheet" href="TemplateData/style.css" />
+  <style>
+    #unity-footer {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -32,6 +37,22 @@
     var progressBarFull = document.querySelector("#unity-progress-bar-full");
     var fullscreenButton = document.querySelector("#unity-fullscreen-button");
     var warningBanner = document.querySelector("#unity-warning");
+
+    function resizeWindow(event) {
+      // pw.innerText = 'width:' + window.innerWidth + 'px';
+      // ph.innerText = 'height:' + window.innerHeight + 'px';
+      setViewSize();
+    }
+
+
+    function setViewSize() {
+      const w = document.documentElement.clientWidth;
+      const h = document.documentElement.clientHeight;
+      canvas.style.width = w + "px";
+      canvas.style.height = h + 10 + "px";
+    }
+
+
 
     // Shows a temporary message banner/ribbon for a few seconds, or
     // a permanent error message on top of the canvas if type=='error'.
@@ -109,6 +130,8 @@
         });
     };
     document.body.appendChild(script);
+    window.addEventListener('resize', resizeWindow);
+    setViewSize();
   </script>
 </body>
 
